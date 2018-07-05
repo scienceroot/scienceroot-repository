@@ -6,12 +6,12 @@
     "module": "es2015",
     "types": [],
     "paths": {
-      "@scienceroot/repository": [ "../repository-lib/public_api.ts" ]
+      "@scienceroot/repository": [ "../dist/repository-lib" ]
     }
   },
   "angularCompilerOptions": {
     "paths": {
-      "@scienceroot/repository": [ "../repository-lib/public_api.ts" ]
+      "@scienceroot/repository": [ "../dist/repository-lib" ]
     }
   },
   "exclude": [

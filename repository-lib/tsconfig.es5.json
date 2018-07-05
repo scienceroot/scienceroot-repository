@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../../out-tsc/lib-es5/",
+    "baseUrl": ""
+  },
+  "files": [
+    "./index.ts",
+    "./typings.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "flatModuleOutFile": "repository.js",
+    "flatModuleId": "@scienceroot/repository",
+    "genDir": "../../out-tsc/lib-gen-dir/"
+  }
+}
