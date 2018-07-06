@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {ScrRepositoryStore} from '../store/repositroy-store';
 import {ScrRepository} from './repository.model';
@@ -17,6 +17,19 @@ export class ScrRepositoryService {
     const url = ScrRepositoryStore.base();
 
     return this._httpClient.post(url, repository)
+      .toPromise();
+  }
+
+  public byUser(userId: string): Promise<ScrRepository[]> {
+    const url = ScrRepositoryStore.base();
+    let params = new HttpParams();
+
+    params = params.set('userId', userId);
+
+    return this._httpClient.get(url, {params: params})
+      .pipe(
+        map(ScrRepository.fromObjArr)
+      )
       .toPromise();
   }
 

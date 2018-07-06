@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
-import {ScrActiveUserService, ScrUser} from '@scienceroot/user';
+import {ScrActiveUserService} from '@scienceroot/user';
 import {ScrRepository} from '../../core/repository.model';
 
 @Component({
@@ -38,7 +38,6 @@ export class ScrRepositoryListCreateDialogComponent implements OnInit {
     private _activeUserService: ScrActiveUserService
   ) {
     this.repository.creator = this._activeUserService.get();
-    console.log(this._activeUserService.get())
   }
 
   ngOnInit(): void {

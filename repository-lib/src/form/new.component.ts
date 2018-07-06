@@ -40,8 +40,6 @@ export class ScrRepositoryFormNewComponent implements OnInit {
   }
 
   public save() {
-    console.log(this.repository)
-
     this._repositoryService.create(this.repository)
       .then(res => console.log(res));
   }
