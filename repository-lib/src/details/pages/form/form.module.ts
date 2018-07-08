@@ -4,8 +4,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrRepositoryCoreModule} from '../../../core/core.module';
-import {ScrRepositoryPagesFormComponent} from './form.component';
+import {ScrRepositoryPageFormEditComponent} from './edit.component';
+import {ScrRepositoryPageFormComponent} from './form.component';
 import {ScrRepositoryPagesNewComponent} from './new.component';
 
 @NgModule({
@@ -17,15 +19,18 @@ import {ScrRepositoryPagesNewComponent} from './new.component';
     RouterModule,
     MatInputModule,
     MatButtonModule,
+    ScrLoadingModule,
     ScrRepositoryCoreModule
   ],
   declarations: [
     ScrRepositoryPagesNewComponent,
-    ScrRepositoryPagesFormComponent
+    ScrRepositoryPageFormEditComponent,
+    ScrRepositoryPageFormComponent
   ],
   exports: [
     ScrRepositoryPagesNewComponent,
-    ScrRepositoryPagesFormComponent
+    ScrRepositoryPageFormEditComponent,
+    ScrRepositoryPageFormComponent
   ],
   providers: []
 })

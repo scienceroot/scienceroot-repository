@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ScrRepositoryDataService} from './data.service';
 import {ScrRepositoryService} from './repository.service';
 
 @NgModule({
@@ -9,7 +10,8 @@ import {ScrRepositoryService} from './repository.service';
     declarations: [],
     exports: [],
     providers: [
-      ScrRepositoryService
+      ScrRepositoryService,
+      ScrRepositoryDataService
     ]
 })
 export class ScrRepositoryCoreModule {

@@ -1,10 +1,31 @@
+export interface DataEntry {
+  key: string;
+  type: string;
+  value: string;
+}
+
 export class ScrRepositoryPage {
+
+  public static dataKey: string = 'wiki';
+
+  public static fromDataEntries(dataEntries: any[]): ScrRepositoryPage[] {
+    return dataEntries.map(ScrRepositoryPage.fromDataEntry);
+  }
+
+  public static fromDataEntry(dataEntry: DataEntry): ScrRepositoryPage {
+    const base64Data = dataEntry.value.split('base64:')[1];
+    const text = atob(base64Data);
+
+    return new ScrRepositoryPage(text, dataEntry.key);
+  }
 
   private _data: any[] = [];
 
   constructor(
-    private _text: string = ''
+    private _text: string = '',
+    public readonly key: string = null
   ) {
+    this._data = this._toByteArray(_text);
   }
 
   public toDataRequest(privateKey: string) {
@@ -16,6 +37,10 @@ export class ScrRepositoryPage {
 
   get data(): any[] {
     return this._data;
+  }
+
+  get text(): string {
+    return this._text;
   }
 
   set text(value: string) {

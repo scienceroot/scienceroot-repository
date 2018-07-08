@@ -3,7 +3,11 @@ import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {ScrLoadingModule} from '@scienceroot/design';
+import {ScrRepositoryPageDetailComponent} from './details/details.component';
+import {ScrRepositoryPageDetailModule} from './details/details.module';
 import {ScrRepositoryPagesFormModule} from './form/form.module';
+import {ScrRepositoryPageListModule} from './list/list.module';
 import {ScrRepositoryPagesComponent} from './pages.component';
 
 @NgModule({
@@ -12,7 +16,10 @@ import {ScrRepositoryPagesComponent} from './pages.component';
     RouterModule,
     FlexLayoutModule,
     MatButtonModule,
-    ScrRepositoryPagesFormModule
+    ScrLoadingModule,
+    ScrRepositoryPagesFormModule,
+    ScrRepositoryPageListModule,
+    ScrRepositoryPageDetailModule
   ],
   declarations: [
     ScrRepositoryPagesComponent

@@ -4,7 +4,7 @@ import {debounceTime} from 'rxjs/operators';
 import {ScrRepositoryPage} from '../page.model';
 
 @Component({
-  selector: 'scr-repository-pages-form',
+  selector: 'scr-repository-page-form',
   template: `
     <div class="text-container">
       <mat-form-field>
@@ -30,7 +30,7 @@ import {ScrRepositoryPage} from '../page.model';
     } 
   `]
 })
-export class ScrRepositoryPagesFormComponent implements OnInit {
+export class ScrRepositoryPageFormComponent implements OnInit {
 
   @Input() page: ScrRepositoryPage = new ScrRepositoryPage();
 
@@ -39,6 +39,11 @@ export class ScrRepositoryPagesFormComponent implements OnInit {
   public dataFormControl: FormControl = new FormControl();
 
   constructor() {
+
+  }
+
+  ngOnInit(): void {
+    this.dataFormControl.setValue(this.page.text);
     this.dataFormControl.valueChanges
       .pipe(
         debounceTime(500),
@@ -47,9 +52,5 @@ export class ScrRepositoryPagesFormComponent implements OnInit {
         this.page.text = text;
         this.pageChange.emit(this.page);
       });
-  }
-
-  ngOnInit(): void {
-
   }
 }
