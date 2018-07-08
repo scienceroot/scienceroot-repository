@@ -30,6 +30,7 @@ export class ScrRepositoryPage {
 
   public toDataRequest(privateKey: string) {
     return {
+      key: this.key,
       data: this._data,
       privateKey: privateKey
     };

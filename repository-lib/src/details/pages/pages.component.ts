@@ -23,6 +23,7 @@ import {ScrRepositoryPage} from './page.model';
          fxLayoutAlign="end">
       <div fxFlex="100px">
         <a  mat-raised-button=""
+            color="accent"
             [routerLink]="['/repositories', repository.id, 'pages', 'new']">
           <span>New page</span>
         </a>

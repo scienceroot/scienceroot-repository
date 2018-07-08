@@ -37,6 +37,19 @@ export class ScrRepositoryDataService {
     ).toPromise();
   }
 
+  public update(repositoryId: string, dataRequest: any): Promise<any> {
+    const url = ScrRepositoryStore.byRepositoryId(repositoryId);
+    const store = this._httpClient.put(url, dataRequest, {responseType: 'text' as 'text'})
+      .toPromise();
+
+    return fromPromise(store).pipe(
+      delay( 1500 ),
+      flatMap(txId => fromPromise(this._wavesApi.API.Node.transactions.get(txId))),
+      retry(2),
+      tap(res => console.log(res)),
+    ).toPromise();
+  }
+
   public getPages(address: string): Promise<ScrRepositoryPage[]> {
     return this.get(address)
       .pipe(

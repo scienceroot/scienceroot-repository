@@ -37,7 +37,7 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
   public page: ScrRepositoryPage = new ScrRepositoryPage();
 
   public readonly repositoryId: string;
-  private _privateKey: string = '4HcPdaVysXhwvk5BwVfhaKzmgR8eQDkyPktRqFctpiSh'; // Cool project
+  private _privateKey: string = 'DzNzPyZEwd96etCMKzbQxR7gGTURpfKdioYxyGwcJ4We'; // abc2
 
   constructor(
     private _repositoryService: ScrRepositoryService,

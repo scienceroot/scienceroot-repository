@@ -2,16 +2,16 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ScrRepositoryDataService} from '../../../core/data.service';
 import {ScrRepository} from '../../../core/repository.model';
-import {ScrRepositoryService} from '../../../core/repository.service';
 import {ScrRepositoryPage} from '../page.model';
 
 @Component({
   selector: 'scr-repository-page-list',
   template: `
-    <div>
+    <div  fxLayout="row"
+          fxLayoutGap="24px">
       <ng-container *ngFor="let page of pages">
-        <div>
-          <a mat-raised-button="" 
+        <div fxFlex="75px">
+          <a mat-button="" 
              color="accent" 
              [routerLink]="['/repositories', repository.id, 'pages', 'keys', page.key]">
             <span>{{ page.key.toUpperCase() }}</span>

@@ -46,7 +46,7 @@ export class ScrRepositoryPageFormEditComponent implements OnInit {
   public unsavedChanges: boolean = false;
   public repositoryId: string;
 
-  private _privateKey: string = '4HcPdaVysXhwvk5BwVfhaKzmgR8eQDkyPktRqFctpiSh'; // Cool project
+  private _privateKey: string = 'DzNzPyZEwd96etCMKzbQxR7gGTURpfKdioYxyGwcJ4We'; // abc2
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -66,7 +66,7 @@ export class ScrRepositoryPageFormEditComponent implements OnInit {
   }
 
   public save() {
-    this._dataService.save(this.repositoryId, this.page.toDataRequest(this._privateKey));
+    this._dataService.update(this.repositoryId, this.page.toDataRequest(this._privateKey));
   }
 
   private _onParamsChange(params: any) {
@@ -74,6 +74,9 @@ export class ScrRepositoryPageFormEditComponent implements OnInit {
     const key = params.key;
 
     this.pageReq = this._dataService.getPageByRepository(this.repositoryId, key);
-    this.pageReq.then(page => this.page = page);
+    this.pageReq.then(page => {
+      this.page = page;
+      console.log(page)
+    });
   }
 }
