@@ -10,33 +10,52 @@ import {ScrRepositoryService} from '../core/repository.service';
     <scr-loading [waitFor]="repositoryReq">
       <div onFinish>
         <ng-container *ngIf="!!repository">
-          <div>
-            <span class="mat-title">{{repository?.name}}</span>
+          <div class="section">
+            <span class="mat-headline">{{repository?.name}}</span>
           </div>
-          <div fxLayout="row"
-               fxLayoutGap="24px">
-            <div fxFlex="130px">
-              <span class="mat-caption">Public Key</span>
+          <div class="section">
+            <div fxLayout="row"
+                 fxLayoutGap="24px">
+              <div fxFlex="130px">
+                <span class="mat-caption">Public Key</span>
+              </div>
+              <div fxFlex="">
+                <span class="mat-subheading-2">{{repository?.publicKey}}</span>
+              </div>
             </div>
-            <div fxFlex="">
-              <span class="mat-subheading-2">{{repository?.publicKey}}</span>
-            </div>
-          </div>
-          <div>
             <ng-container *ngIf="!!address">
               <scr-wallet-show-balance [address]="address">
               </scr-wallet-show-balance>
             </ng-container>
           </div>
-          <div>
+          <mat-divider></mat-divider>
+          <div class="section">
+            <div>
+              <span class="mat-title">Pages</span>
+            </div>
             <scr-repository-pages [repository]="repository">
             </scr-repository-pages>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="section">
+            <div  fxLayout="row"
+                  fxLayoutAlign="end">
+              <div fxFlex="150px">
+                <a mat-button=""
+                   color="accent"
+                   [routerLink]="['/repositories']">
+                  <span>Back to repositories</span>
+                </a>
+              </div>
+            </div>
           </div>
         </ng-container>
       </div>
     </scr-loading>
   `,
   styles: [`
+    .section {padding: 24px;}
+    
     scr-wallet-show-balance /deep/ .mat-title {display: none;}
   `]
 })

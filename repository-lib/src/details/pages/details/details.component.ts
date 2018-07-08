@@ -19,7 +19,15 @@ import {ScrRepositoryPage} from '../page.model';
             <span class="mat-body-2">{{page.text}}</span>
           </div>
           <div fxLayout="row" 
+               fxLayoutGap="24px"
                fxLayoutAlign="end">
+            <div fxFlex="150px">
+              <a mat-button="" 
+                 color="accent"
+                 [routerLink]="['/repositories', repositoryId]">
+                <span>Back to repository</span>
+              </a>
+            </div>
             <div fxFlex="100px">
               <a mat-raised-button="" 
                  color="accent" 
@@ -40,7 +48,8 @@ export class ScrRepositoryPageDetailComponent implements OnInit {
 
   public pageReq: Promise<ScrRepositoryPage>;
   public page: ScrRepositoryPage;
-  public repository: ScrRepository;
+
+  public repositoryId: string;
 
   private _wavesApi: IWavesAPI;
 
@@ -59,10 +68,10 @@ export class ScrRepositoryPageDetailComponent implements OnInit {
 
   private _onParamsChange(params: any) {
     const key = params.key;
-    const repositoryId = params.repositoryId;
+    this.repositoryId = params.repositoryId;
 
-    if (!!repositoryId && !!key) {
-      this._fetchPage(repositoryId, key);
+    if (!!this.repositoryId && !!key) {
+      this._fetchPage(this.repositoryId, key);
     }
   }
 

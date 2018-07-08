@@ -13,6 +13,13 @@ import {ScrRepositoryPage} from '../page.model';
     <div fxLayout="row" 
          fxLayoutAlign="end">
       <div fxFlex="100px">
+        <a mat-button="" 
+           color="accent"
+           [routerLink]="['/repositories', repositoryId]">
+          <span>Cancel</span>
+        </a>
+      </div>
+      <div fxFlex="100px">
         <button mat-raised-button=""
                 (click)="save()"
                 color="accent">
@@ -29,7 +36,7 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
 
   public page: ScrRepositoryPage = new ScrRepositoryPage();
 
-  private readonly _repositoryId: string;
+  public readonly repositoryId: string;
   private _privateKey: string = '4HcPdaVysXhwvk5BwVfhaKzmgR8eQDkyPktRqFctpiSh'; // Cool project
 
   constructor(
@@ -37,7 +44,7 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
     private _dataService: ScrRepositoryDataService,
     private _activatedRoute: ActivatedRoute
   ) {
-    this._repositoryId = this._activatedRoute.snapshot.params.repositoryId;
+    this.repositoryId = this._activatedRoute.snapshot.params.repositoryId;
 
   }
 
@@ -46,7 +53,7 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
   }
 
   public save() {
-    this._dataService.save(this._repositoryId, this.page.toDataRequest(this._privateKey));
+    this._dataService.save(this.repositoryId, this.page.toDataRequest(this._privateKey));
   }
 
   public onPageChange(newPage: ScrRepositoryPage) {
