@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
-import {ScrRepositoryStoreConfig} from '@scienceroot/repository';
+import {ScrRepositoryRoutesModule, ScrRepositoryStoreConfig} from '@scienceroot/repository';
 import {
   ScrAuthenticationLoginComponent,
   ScrAuthenticationModule,
@@ -11,11 +11,7 @@ import {
 } from '@scienceroot/security';
 import {ScrActiveUserModule, ScrUserStoreConfigModel} from '@scienceroot/user';
 import {ScrWalletStoreConfig} from '@scienceroot/wallet';
-
-
-import { AppComponent } from './app.component';
-import { ListModule } from './list/list.module';
-
+import {AppComponent} from './app.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +21,13 @@ import { ListModule } from './list/list.module';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
+      {path: '', pathMatch: 'full', redirectTo: 'repositories'},
       {path: 'login', component: ScrAuthenticationLoginComponent}
     ]),
     ScrAuthenticationModule,
     ScrSecureHttpClientModule,
     ScrActiveUserModule,
-    ListModule
+    ScrRepositoryRoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

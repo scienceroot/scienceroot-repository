@@ -10,7 +10,7 @@
     }
   },
   "publishConfig": {
-    "registry": "https://npm.sciencroots.com"
+    "registry": "https://npm.scienceroots.com"
   },
   "peerDependencies": {
     "@angular/animations": "5.x.x",

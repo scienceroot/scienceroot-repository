@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
+import {ScrRepositoryPage} from '../details/pages/page.model';
 import {ScrRepositoryStore} from '../store/repositroy-store';
 import {ScrRepository} from './repository.model';
 
@@ -39,6 +40,16 @@ export class ScrRepositoryService {
     return this._httpClient.get(url)
       .pipe(
         map(ScrRepository.fromObj)
+      )
+      .toPromise();
+  }
+
+  public addPage(repositoryId: string, dataRequest: any): Promise<any> {
+    const url = ScrRepositoryStore.byRepositoryId(repositoryId);
+
+    return this._httpClient.post(url, dataRequest)
+      .pipe(
+        tap(res => console.log(res))
       )
       .toPromise();
   }
