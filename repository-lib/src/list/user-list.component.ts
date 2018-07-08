@@ -9,6 +9,9 @@ import {ScrRepositoryService} from '../core/repository.service';
     <div class="repositories">
       <scr-loading [waitFor]="repositoriesReq">
         <div onFinish>
+          <div>
+            <span class="mat-headline">Your repositories</span>
+          </div>
           <scr-repository-list [repositories]="repositories">
           </scr-repository-list>
         </div>

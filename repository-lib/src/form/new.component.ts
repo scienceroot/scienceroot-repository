@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ScrRepository} from '../core/repository.model';
 import {ScrRepositoryService} from '../core/repository.service';
 
@@ -31,6 +31,8 @@ export class ScrRepositoryFormNewComponent implements OnInit {
 
   @Input() repository: ScrRepository;
 
+  @Output() repositorySaved: EventEmitter<ScrRepository> = new EventEmitter<ScrRepository>();
+
   constructor(private _repositoryService: ScrRepositoryService) {
 
   }
@@ -41,6 +43,6 @@ export class ScrRepositoryFormNewComponent implements OnInit {
 
   public save() {
     this._repositoryService.create(this.repository)
-      .then(res => console.log(res));
+      .then(res => this.repositorySaved.emit(res));
   }
 }

@@ -24,7 +24,7 @@ export class ScrRepositoryListCreateComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+    this.openCreateDialog();
   }
 
   ngAfterViewInit(): void {

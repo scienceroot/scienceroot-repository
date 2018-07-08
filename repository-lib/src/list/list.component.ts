@@ -13,7 +13,7 @@ import {ScrRepositoryService} from '../core/repository.service';
             <span class="mat-subheading-1">{{repository.name}}</span>
           </div>
           <div fxFlex="75px">
-            <a  mat-raised-button=""
+            <a  mat-button=""
                 [routerLink]="['/repositories', repository.id]"
                 color="accent">
               <span>Details</span>
