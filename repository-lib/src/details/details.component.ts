@@ -11,7 +11,15 @@ import {ScrRepositoryService} from '../core/repository.service';
       <div onFinish>
         <ng-container *ngIf="!!repository">
           <div class="section">
-            <span class="mat-headline">{{repository?.name}}</span>
+            <div fxLayout="row">
+              <div fxFlex="">
+                <span class="mat-headline">{{repository?.name}}</span>
+              </div>
+              <div fxFlex="50px">
+                <scr-repository-locked [repository]="repository">
+                </scr-repository-locked>
+              </div>
+            </div>
           </div>
           <div class="section">
             <div fxLayout="row"

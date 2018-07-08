@@ -3,6 +3,7 @@ import {MatDialogRef} from '@angular/material';
 import {Router} from '@angular/router';
 import {ScrActiveUserService} from '@scienceroot/user';
 import {ScrRepository} from '../../core/repository.model';
+import {ScrRepositoryPrivateKeyStore} from '../../store/private-keys.store';
 
 @Component({
   selector: '',
@@ -87,6 +88,9 @@ export class ScrRepositoryListCreateDialogComponent implements OnInit {
 
   public onRepositorySaved(savedRepository: ScrRepository) {
     this.repository = savedRepository;
+
+    ScrRepositoryPrivateKeyStore.add(savedRepository.id, savedRepository.privateKey);
+
     this.isSaved = true;
   }
 

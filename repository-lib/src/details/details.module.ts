@@ -7,6 +7,7 @@ import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrWalletCoreModule, ScrWalletShowBalanceModule} from '@scienceroot/wallet';
 import {ScrRepositoryCoreModule} from '../core/core.module';
 import {ScrRepositoryDetailsComponent} from './details.component';
+import {ScrRepositoryLockedModule} from './locked/locked.module';
 import {ScrRepositoryPagesModule} from './pages/pages.module';
 
 @NgModule({
@@ -20,6 +21,7 @@ import {ScrRepositoryPagesModule} from './pages/pages.module';
     ScrRepositoryCoreModule,
     ScrWalletCoreModule,
     ScrWalletShowBalanceModule,
+    ScrRepositoryLockedModule,
     ScrRepositoryPagesModule
   ],
   declarations: [

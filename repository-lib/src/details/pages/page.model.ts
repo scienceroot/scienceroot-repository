@@ -41,7 +41,7 @@ export class ScrRepositoryPage {
   }
 
   get text(): string {
-    return this._text;
+    return this._text.replace(/(?:\r\n|\r|\n)/g, '<br>');
   }
 
   set text(value: string) {
