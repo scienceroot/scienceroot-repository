@@ -5,13 +5,15 @@ import {ScrRepositoryService} from '../core/repository.service';
 @Component({
   selector: 'scr-repository-form-new',
   template: `
-    <div>
-      <mat-form-field>
-        <input  matInput=""
-                [(ngModel)]="repository.name"
-                placeholder="Name">
-      </mat-form-field>
-    </div>
+    <scr-loading [waitFor]="repositoryReq">
+      <div onInit>
+        <mat-form-field>
+          <input  matInput=""
+                  [(ngModel)]="repository.name"
+                  placeholder="Name">
+        </mat-form-field>
+      </div>
+    </scr-loading>
     <div  fxLayout="row"
           fxLayoutAlign="end">
       <div fxFlex="88px">
@@ -33,6 +35,8 @@ export class ScrRepositoryFormNewComponent implements OnInit {
 
   @Output() repositorySaved: EventEmitter<ScrRepository> = new EventEmitter<ScrRepository>();
 
+  public repositoryReq: Promise<ScrRepository>;
+
   constructor(private _repositoryService: ScrRepositoryService) {
 
   }
@@ -42,7 +46,7 @@ export class ScrRepositoryFormNewComponent implements OnInit {
   }
 
   public save() {
-    this._repositoryService.create(this.repository)
-      .then(res => this.repositorySaved.emit(res));
+    this.repositoryReq = this._repositoryService.create(this.repository);
+    this.repositoryReq.then(res => this.repositorySaved.emit(res));
   }
 }

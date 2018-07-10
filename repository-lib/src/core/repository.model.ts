@@ -9,7 +9,7 @@ export class ScrRepository {
 
   public static fromObj(obj: any): ScrRepository {
     const creator = ScrUser.fromObj(obj.creator);
-
+    console.log(obj.privateKey)
     return new ScrRepository(
       obj.id,
       obj.name,
@@ -34,6 +34,10 @@ export class ScrRepository {
   set privateKey(value: string) {
     this._privateKey = value;
     this.locked = false;
+  }
+
+  get privateKey(): string {
+    return this._privateKey;
   }
 
   private _isLocked() {
