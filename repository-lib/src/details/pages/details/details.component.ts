@@ -16,7 +16,7 @@ import {ScrRepositoryPage} from '../page.model';
             <span class="mat-title">{{page.key}}</span>
           </div>
           <div>
-            <p class="mat-body-2" [innerHtml]="page.text"></p>
+            <p class="mat-body-2" [innerHtml]="page.displayText"></p>
           </div>
           <div fxLayout="row" 
                fxLayoutGap="24px"

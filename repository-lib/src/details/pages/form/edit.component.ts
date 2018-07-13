@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {s} from '@angular/core/src/render3';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ScrRepositoryDataService} from '../../../core/data.service';
+import {ScrRepositoryPrivateKeyStore} from '../../../store/private-keys.store';
 import {ScrRepositoryPage} from '../page.model';
 
 @Component({
@@ -10,6 +10,15 @@ import {ScrRepositoryPage} from '../page.model';
     <scr-loading [waitFor]="pageReq">
       <div onFinish>
         <ng-container *ngIf="!!page">
+          <div>
+            <span class="mat-title">Edit page</span>
+          </div>
+          <ng-container *ngIf="!!error">
+            <span class="mat-error">{{error}}</span>
+          </ng-container>
+          <ays-transaction-listener [transactionId]="saveTransactionId" 
+                                    (transactionSuccess)="onTransactionSuccess($event)">
+          </ays-transaction-listener>
           <scr-repository-page-form [page]="page"
                                     (pageChange)="onPageChange($event)">
           </scr-repository-page-form>
@@ -45,8 +54,10 @@ export class ScrRepositoryPageFormEditComponent implements OnInit {
   public page: ScrRepositoryPage;
   public unsavedChanges: boolean = false;
   public repositoryId: string;
+  public error: string = null;
+  public saveTransactionId: string;
 
-  private _privateKey: string = 'DzNzPyZEwd96etCMKzbQxR7gGTURpfKdioYxyGwcJ4We'; // abc2
+  private _privateKey: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -66,17 +77,36 @@ export class ScrRepositoryPageFormEditComponent implements OnInit {
   }
 
   public save() {
-    this._dataService.update(this.repositoryId, this.page.toDataRequest(this._privateKey));
+    this._dataService.update(this.repositoryId, this.page.toDataRequest(this._privateKey))
+      .then(txId => {
+        this.saveTransactionId = txId;
+        this.error = null;
+      })
+      .catch((error: any) => {
+        const errorData = JSON.parse(error.error);
+
+        if (errorData.status === 400) {
+          this.error = errorData.message;
+        } else {
+          this.error = 'An unknown error occured.';
+        }
+      });
+  }
+
+  public onTransactionSuccess(tx: any) {
+    this._router.navigate(['/repositories', this.repositoryId, 'pages', 'keys', this.page.key]);
   }
 
   private _onParamsChange(params: any) {
-    this.repositoryId = params.repositoryId;
     const key = params.key;
+
+    this.repositoryId = params.repositoryId;
+    this._privateKey = ScrRepositoryPrivateKeyStore.get(this.repositoryId);
 
     this.pageReq = this._dataService.getPageByRepository(this.repositoryId, key);
     this.pageReq.then(page => {
       this.page = page;
-      console.log(page)
+      this.error = null;
     });
   }
 }

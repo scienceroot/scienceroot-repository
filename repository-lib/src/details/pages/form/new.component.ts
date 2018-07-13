@@ -1,3 +1,4 @@
+import {HttpErrorResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ScrRepositoryDataService} from '../../../core/data.service';
@@ -8,6 +9,12 @@ import {ScrRepositoryPage} from '../page.model';
 @Component({
   selector: '',
   template: `
+    <div>
+      <span class="mat-title">Create new page</span>
+    </div>
+    <ng-container *ngIf="!!error">
+      <span class="mat-error">{{error}}</span>
+    </ng-container>
     <ays-transaction-listener [transactionId]="saveTransactionId">
     </ays-transaction-listener>
     <scr-repository-page-form [page]="page"
@@ -38,6 +45,7 @@ import {ScrRepositoryPage} from '../page.model';
 export class ScrRepositoryPagesNewComponent implements OnInit {
 
   public page: ScrRepositoryPage = new ScrRepositoryPage();
+  public error: string = null;
 
   public saveTransactionId: string;
 
@@ -59,7 +67,19 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
 
   public save() {
     this._dataService.save(this.repositoryId, this.page.toDataRequest(this._privateKey))
-      .then(txId => this.saveTransactionId = txId);
+      .then(txId => {
+        this.saveTransactionId = txId;
+        this.error = null;
+      })
+      .catch((error: any) => {
+        const errorData = JSON.parse(error.error);
+
+        if (errorData.status === 400) {
+          this.error = errorData.message;
+        } else {
+          this.error = 'An unknown error occured.';
+        }
+      });
   }
 
   public onPageChange(newPage: ScrRepositoryPage) {

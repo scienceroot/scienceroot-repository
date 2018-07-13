@@ -1,12 +1,16 @@
-import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChange} from '@angular/core';
 import {ScrWavesApiService} from '@scienceroot/wallet';
 import {IWavesAPI} from '@waves/waves-api';
 import {fromPromise} from 'rxjs/observable/fromPromise';
-import {delay, retry, tap} from 'rxjs/operators';
+import {interval} from 'rxjs/observable/interval';
+import {delay, flatMap, retry, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'ays-transaction-listener',
   template: `
+    <ng-container *ngIf="error">
+      <span class="mat-error">An error occurred.</span>
+    </ng-container>
     <ng-container *ngIf="!!transactionId">
       <div>
         <span class="mat-subheading-1">Saving in progress</span>
@@ -23,6 +27,11 @@ import {delay, retry, tap} from 'rxjs/operators';
 export class ScrTransactionListenerComponent implements OnChanges {
 
   @Input() transactionId: string;
+
+  @Output() transactionSuccess: EventEmitter<any> = new EventEmitter<any>();
+
+  public success: boolean = false;
+  public error: boolean = false;
 
   private _wavesApi: IWavesAPI;
 
@@ -41,14 +50,24 @@ export class ScrTransactionListenerComponent implements OnChanges {
   private _onTransactionIdChange(transactionIdChange: SimpleChange) {
     if (!!transactionIdChange.currentValue) {
       const transactionId = transactionIdChange.currentValue;
-
-      const sub = fromPromise(this._wavesApi.API.Node.transactions.get(transactionId))
+      const sub = interval(2000)
         .pipe(
-          retry(10),
-          tap(res => console.log(res)),
-          delay(1000)
+          flatMap(() => fromPromise(this._wavesApi.API.Node.transactions.get(transactionId))),
+          retry(15),
+          tap(res => console.log(res))
         )
-        .subscribe(() => console.log('hue'));
+        .subscribe(
+          (tx: any) => {
+            this.success = true;
+            this.error = false;
+            this.transactionSuccess.emit(tx);
+            sub.unsubscribe();
+          },
+          () => {
+            this.success = false;
+            this.error = true;
+          }
+        );
 
     }
   }

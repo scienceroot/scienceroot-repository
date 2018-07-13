@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {ScrWavesApiService} from '@scienceroot/wallet';
 import {IWavesAPI} from '@waves/waves-api';
 import {Observable} from 'rxjs/Observable';
 import {fromPromise} from 'rxjs/observable/fromPromise';
-import {delay, flatMap, map, retry, tap} from 'rxjs/operators';
+import {catchError, delay, flatMap, map, retry, tap} from 'rxjs/operators';
 import {DataEntry, ScrRepositoryPage} from '../details/pages/page.model';
 import {ScrRepositoryStore} from '../store/repositroy-store';
 import {ScrRepositoryService} from './repository.service';
@@ -37,12 +37,7 @@ export class ScrRepositoryDataService {
     const store = this._httpClient.put(url, dataRequest, {responseType: 'text' as 'text'})
       .toPromise();
 
-    return fromPromise(store).pipe(
-      delay( 1500 ),
-      flatMap(txId => fromPromise(this._wavesApi.API.Node.transactions.get(txId))),
-      retry(2),
-      tap(res => console.log(res)),
-    ).toPromise();
+    return store;
   }
 
   public getPages(address: string): Promise<ScrRepositoryPage[]> {

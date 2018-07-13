@@ -8,6 +8,8 @@ export class ScrRepositoryPage {
 
   public static dataKey: string = 'wiki';
 
+  public displayText: string;
+
   public static fromDataEntries(dataEntries: any[]): ScrRepositoryPage[] {
     return dataEntries.map(ScrRepositoryPage.fromDataEntry);
   }
@@ -26,6 +28,7 @@ export class ScrRepositoryPage {
     public readonly key: string = null
   ) {
     this._data = this._toByteArray(_text);
+    this.displayText = this._text.replace(/(?:\r\n|\r|\n)/g, '<br>');
   }
 
   public toDataRequest(privateKey: string) {
@@ -41,12 +44,13 @@ export class ScrRepositoryPage {
   }
 
   get text(): string {
-    return this._text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    return this._text;
   }
 
   set text(value: string) {
     this._text = value;
     this._data = this._toByteArray(value);
+    this.displayText = this._text.replace(/(?:\r\n|\r|\n)/g, '<br>');
   }
 
   /* tslint:disable:no-bitwise */

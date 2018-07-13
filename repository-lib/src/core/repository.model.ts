@@ -9,7 +9,7 @@ export class ScrRepository {
 
   public static fromObj(obj: any): ScrRepository {
     const creator = ScrUser.fromObj(obj.creator);
-    console.log(obj.privateKey)
+
     return new ScrRepository(
       obj.id,
       obj.name,
