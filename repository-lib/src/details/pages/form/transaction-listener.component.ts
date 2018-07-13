@@ -52,7 +52,7 @@ export class ScrTransactionListenerComponent implements OnChanges {
       const transactionId = transactionIdChange.currentValue;
       const sub = interval(2000)
         .pipe(
-          flatMap(() => fromPromise(this._wavesApi.API.Node.transactions.get(transactionId))),
+          flatMap(() => fromPromise(this._wavesApi.API.Node.v1.transactions.get(transactionId))),
           retry(15),
           tap(res => console.log(res))
         )

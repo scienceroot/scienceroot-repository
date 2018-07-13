@@ -33,7 +33,7 @@
     "@scienceroot/security": "1.x.x",
     "@scienceroot/user": "2.x.x",
     "@scienceroot/wallet": "^3.0.3",
-    "@waves/waves-api": "1.1.x",
+    "@waves/waves-api": "0.28.0",
     "core-js": "2.x.x",
     "ngx-clipboard": "11.x.x",
     "rxjs": "5.x.x",

@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ScrRepositoryDataService} from '../../../core/data.service';
 import {ScrRepositoryService} from '../../../core/repository.service';
 import {ScrRepositoryPrivateKeyStore} from '../../../store/private-keys.store';
@@ -15,7 +15,8 @@ import {ScrRepositoryPage} from '../page.model';
     <ng-container *ngIf="!!error">
       <span class="mat-error">{{error}}</span>
     </ng-container>
-    <ays-transaction-listener [transactionId]="saveTransactionId">
+    <ays-transaction-listener [transactionId]="saveTransactionId" 
+                              (transactionSuccess)="onTransactionSuccess($event)">
     </ays-transaction-listener>
     <scr-repository-page-form [page]="page"
                              (pageChange)="onPageChange($event)">
@@ -53,6 +54,7 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
   private readonly _privateKey: string;
 
   constructor(
+    private _router: Router,
     private _repositoryService: ScrRepositoryService,
     private _dataService: ScrRepositoryDataService,
     private _activatedRoute: ActivatedRoute
@@ -80,6 +82,12 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
           this.error = 'An unknown error occured.';
         }
       });
+  }
+
+  public onTransactionSuccess(tx: any) {
+    const key = tx.data[0].key;
+    console.log(tx, key)
+    this._router.navigate(['/repositories', this.repositoryId, 'pages', 'keys', key]);
   }
 
   public onPageChange(newPage: ScrRepositoryPage) {
