@@ -13,14 +13,10 @@ export class ScrRepositoryService {
 
   }
 
-  public create(repository: ScrRepository): Promise<ScrRepository> {
+  public create(repository: ScrRepository): Promise<string> {
     const url = ScrRepositoryStore.base();
 
-    return this._httpClient.post(url, repository)
-      .pipe(
-        tap(res => console.log(res)),
-        map(ScrRepository.fromObj)
-      )
+    return this._httpClient.post<string>(url, repository)
       .toPromise();
   }
 

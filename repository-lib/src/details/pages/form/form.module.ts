@@ -7,8 +7,10 @@ import {RouterModule} from '@angular/router';
 import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrRepositoryCoreModule} from '../../../core/core.module';
 import {ScrRepositoryPageFormEditComponent} from './edit.component';
+import {ScrRepositoryPageFeeEstimateModule} from './fee/fee.module';
 import {ScrRepositoryPageFormComponent} from './form.component';
 import {ScrRepositoryPagesNewComponent} from './new.component';
+import {ScrTransactionListenerComponent} from './transaction-listener.component';
 
 @NgModule({
   imports: [
@@ -20,17 +22,20 @@ import {ScrRepositoryPagesNewComponent} from './new.component';
     MatInputModule,
     MatButtonModule,
     ScrLoadingModule,
-    ScrRepositoryCoreModule
+    ScrRepositoryCoreModule,
+    ScrRepositoryPageFeeEstimateModule
   ],
   declarations: [
     ScrRepositoryPagesNewComponent,
     ScrRepositoryPageFormEditComponent,
-    ScrRepositoryPageFormComponent
+    ScrRepositoryPageFormComponent,
+    ScrTransactionListenerComponent
   ],
   exports: [
     ScrRepositoryPagesNewComponent,
     ScrRepositoryPageFormEditComponent,
-    ScrRepositoryPageFormComponent
+    ScrRepositoryPageFormComponent,
+    ScrTransactionListenerComponent
   ],
   providers: []
 })

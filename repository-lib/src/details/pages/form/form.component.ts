@@ -14,8 +14,9 @@ import {ScrRepositoryPage} from '../page.model';
       </mat-form-field>
     </div>
     <div class="mat-caption">
-      <span>Current size:</span>
-      <span>{{page.data.length}} Bytes</span>
+      <scr-repository-page-fee-estimate [byteSize]="page.data.length">
+      </scr-repository-page-fee-estimate>
+      <span class="mat-caption"> ({{page.data.length}} Bytes)</span>
     </div>
   `,
   styles: [`

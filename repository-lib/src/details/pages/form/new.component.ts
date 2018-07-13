@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ScrRepositoryDataService} from '../../../core/data.service';
 import {ScrRepositoryService} from '../../../core/repository.service';
+import {ScrRepositoryPrivateKeyStore} from '../../../store/private-keys.store';
 import {ScrRepositoryPage} from '../page.model';
 
 @Component({
   selector: '',
   template: `
+    <ays-transaction-listener [transactionId]="saveTransactionId">
+    </ays-transaction-listener>
     <scr-repository-page-form [page]="page"
                              (pageChange)="onPageChange($event)">
     </scr-repository-page-form>
@@ -36,8 +39,10 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
 
   public page: ScrRepositoryPage = new ScrRepositoryPage();
 
+  public saveTransactionId: string;
+
   public readonly repositoryId: string;
-  private _privateKey: string = 'DzNzPyZEwd96etCMKzbQxR7gGTURpfKdioYxyGwcJ4We'; // abc2
+  private readonly _privateKey: string;
 
   constructor(
     private _repositoryService: ScrRepositoryService,
@@ -45,7 +50,7 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
     private _activatedRoute: ActivatedRoute
   ) {
     this.repositoryId = this._activatedRoute.snapshot.params.repositoryId;
-
+    this._privateKey = ScrRepositoryPrivateKeyStore.get(this.repositoryId);
   }
 
   ngOnInit(): void {
@@ -53,7 +58,8 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
   }
 
   public save() {
-    this._dataService.save(this.repositoryId, this.page.toDataRequest(this._privateKey));
+    this._dataService.save(this.repositoryId, this.page.toDataRequest(this._privateKey))
+      .then(txId => this.saveTransactionId = txId);
   }
 
   public onPageChange(newPage: ScrRepositoryPage) {

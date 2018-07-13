@@ -29,12 +29,7 @@ export class ScrRepositoryDataService {
     const store = this._httpClient.post(url, dataRequest, {responseType: 'text' as 'text'})
       .toPromise();
 
-    return fromPromise(store).pipe(
-      delay( 1500 ),
-      flatMap(txId => fromPromise(this._wavesApi.API.Node.transactions.get(txId))),
-      retry(2),
-      tap(res => console.log(res)),
-    ).toPromise();
+    return store;
   }
 
   public update(repositoryId: string, dataRequest: any): Promise<any> {
@@ -53,6 +48,7 @@ export class ScrRepositoryDataService {
   public getPages(address: string): Promise<ScrRepositoryPage[]> {
     return this.get(address)
       .pipe(
+        tap(res => console.log(res)),
         map(res => res.filter(entry => entry.key.indexOf(ScrRepositoryPage.dataKey) > -1)),
         map(ScrRepositoryPage.fromDataEntries)
       )
