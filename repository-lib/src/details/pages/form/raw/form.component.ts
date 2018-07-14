@@ -23,7 +23,7 @@ import {ScrRepositoryPage} from '../../page.model';
     <div class="mat-caption">
       <scr-repository-page-fee-estimate [byteSize]="page.data.length">
       </scr-repository-page-fee-estimate>
-      <span class="mat-caption"> ({{page.data.length}} Bytes)</span>
+      <span> ({{page.data.length}} Bytes)</span>
     </div>
   `,
   styles: [`

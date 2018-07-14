@@ -53,6 +53,11 @@ import * as showdown from 'showdown';
         </div>
       </div>
     </div>
+    <div class="mat-caption">
+      <scr-repository-page-fee-estimate [byteSize]="page.data.length">
+      </scr-repository-page-fee-estimate>
+      <span> ({{page.data.length}} Bytes)</span>
+    </div>
   `,
   styles: [`
     .text-container {

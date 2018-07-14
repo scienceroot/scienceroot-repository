@@ -75,10 +75,20 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
   public save() {
     this._dataService.save(this.repositoryId, this.page.toDataRequest(this._privateKey))
       .then(txId => {
-        this.saveTransactionId = txId;
-        this.error = null;
+        if (!txId) {
+          // Workaround until error handling of backend is fixed
+          const error = new Error();
+          (error as any).error =
+            '{ "message": "Something went wrong. Check the size of your content and your repositories balance.", "status": 400}';
+
+          throw error;
+        } else {
+          this.saveTransactionId = txId;
+          this.error = null;
+        }
       })
       .catch((error: any) => {
+        console.log(error)
         const errorData = JSON.parse(error.error);
 
         if (errorData.status === 400) {
