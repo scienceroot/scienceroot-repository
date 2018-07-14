@@ -15,12 +15,14 @@ import {ScrRepositoryPage} from '../page.model';
     <ng-container *ngIf="!!error">
       <span class="mat-error">{{error}}</span>
     </ng-container>
-    <ays-transaction-listener [transactionId]="saveTransactionId" 
-                              (transactionSuccess)="onTransactionSuccess($event)">
-    </ays-transaction-listener>
-    <scr-repository-page-form [page]="page"
-                             (pageChange)="onPageChange($event)">
-    </scr-repository-page-form>
+      <ays-transaction-listener [transactionId]="saveTransactionId"
+                                (transactionSuccess)="onTransactionSuccess($event)">
+      </ays-transaction-listener>
+    <ng-container  *ngIf="!saveTransactionId">
+      <scr-repository-page-form [page]="page"
+                               (pageChange)="onPageChange($event)">
+      </scr-repository-page-form>
+    </ng-container>
     <div fxLayout="row" 
          fxLayoutAlign="end">
       <div fxFlex="100px">

@@ -13,7 +13,7 @@ import {ScrRepositoryPage} from '../page.model';
       <div onFinish>
         <ng-container *ngIf="!!page">
           <div>
-            <span class="mat-title">{{page.key}}</span>
+            <span class="mat-title">{{page.title}}</span>
           </div>
           <div>
             <p class="mat-body-2" [innerHtml]="page.displayText"></p>

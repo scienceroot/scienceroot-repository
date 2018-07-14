@@ -7,14 +7,14 @@ import {ScrRepositoryPage} from '../page.model';
 @Component({
   selector: 'scr-repository-page-list',
   template: `
-    <div  fxLayout="row"
-          fxLayoutGap="24px">
+    <div  fxLayout="column"
+          fxLayoutGap="8px">
       <ng-container *ngFor="let page of pages">
-        <div fxFlex="75px">
+        <div fxFlex="">
           <a mat-button="" 
              color="accent" 
              [routerLink]="['/repositories', repository.id, 'pages', 'keys', page.key]">
-            <span>{{ page.key.toUpperCase() }}</span>
+            <span>{{ page.title.toUpperCase() }}</span>
           </a>
         </div>
       </ng-container>

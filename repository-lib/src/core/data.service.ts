@@ -43,7 +43,6 @@ export class ScrRepositoryDataService {
   public getPages(address: string): Promise<ScrRepositoryPage[]> {
     return this.get(address)
       .pipe(
-        tap(res => console.log(res)),
         map(res => res.filter(entry => entry.key.indexOf(ScrRepositoryPage.dataKey) > -1)),
         map(ScrRepositoryPage.fromDataEntries)
       )

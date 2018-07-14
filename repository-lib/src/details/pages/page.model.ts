@@ -17,13 +17,17 @@ export class ScrRepositoryPage {
   public static fromDataEntry(dataEntry: DataEntry): ScrRepositoryPage {
     const base64Data = dataEntry.value.split('base64:')[1];
     const text = atob(base64Data);
+    console.log(text);
+    console.log(dataEntry);
+    const json = JSON.parse(text);
 
-    return new ScrRepositoryPage(text, dataEntry.key);
+    return new ScrRepositoryPage(json.title, json.text, dataEntry.key);
   }
 
   private _data: any[] = [];
 
   constructor(
+    private _title: string = '',
     private _text: string = '',
     public readonly key: string = null
   ) {
@@ -34,6 +38,7 @@ export class ScrRepositoryPage {
   public toDataRequest(privateKey: string) {
     return {
       key: this.key,
+      version: 1,
       data: this._data,
       privateKey: privateKey
     };
@@ -47,10 +52,29 @@ export class ScrRepositoryPage {
     return this._text;
   }
 
+  get title(): string {
+    return this._title;
+  }
+
+  set title(value: string) {
+    this._title = value;
+    this._data = this._createData();
+  }
+
   set text(value: string) {
     this._text = value;
-    this._data = this._toByteArray(value);
+    this._data = this._createData();
     this.displayText = this._text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+  }
+
+  private _createData(): any[] {
+    const data = {
+      title: this._title,
+      text: this._text
+    };
+    const dataStr = JSON.stringify(data);
+
+    return this._toByteArray(dataStr);
   }
 
   /* tslint:disable:no-bitwise */

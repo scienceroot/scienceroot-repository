@@ -6,6 +6,13 @@ import {ScrRepositoryPage} from '../page.model';
 @Component({
   selector: 'scr-repository-page-form',
   template: `
+    <div>
+      <mat-form-field>
+        <input matInput=""
+               [formControl]="titleFormControl"
+               placeholder="Title" />
+      </mat-form-field>
+    </div>
     <div class="text-container">
       <mat-form-field>
         <textarea matInput=""
@@ -25,9 +32,13 @@ import {ScrRepositoryPage} from '../page.model';
       width: 100%;
     }
 
-    .text-container mat-form-field, .text-container mat-form-field textarea {
-      width: 100%;
+    mat-form-field textarea {
       height: 370px;
+    }
+
+    mat-form-field,
+    mat-form-field input {
+      width: 100%;
     } 
   `]
 })
@@ -37,6 +48,7 @@ export class ScrRepositoryPageFormComponent implements OnInit {
 
   @Output() pageChange: EventEmitter<ScrRepositoryPage> = new EventEmitter<ScrRepositoryPage>();
 
+  public titleFormControl: FormControl = new FormControl();
   public dataFormControl: FormControl = new FormControl();
 
   constructor() {
@@ -44,6 +56,23 @@ export class ScrRepositoryPageFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._initTextInput();
+    this._initTitleInput();
+  }
+
+  private _initTitleInput() {
+    this.titleFormControl.setValue(this.page.title);
+    this.titleFormControl.valueChanges
+      .pipe(
+        debounceTime(500),
+      )
+      .subscribe(text => {
+        this.page.title = text;
+        this.pageChange.emit(this.page);
+      });
+  }
+
+  private _initTextInput() {
     this.dataFormControl.setValue(this.page.text);
     this.dataFormControl.valueChanges
       .pipe(
