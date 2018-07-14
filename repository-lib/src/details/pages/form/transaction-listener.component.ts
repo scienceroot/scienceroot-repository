@@ -125,7 +125,6 @@ export class ScrTransactionListenerComponent implements OnChanges {
         .pipe(
           flatMap(() => fromPromise(this._wavesApi.API.Node.v1.transactions.get(transactionId))),
           retry(15),
-          tap(res => console.log(res))
         )
         .subscribe(
           (tx: any) => {

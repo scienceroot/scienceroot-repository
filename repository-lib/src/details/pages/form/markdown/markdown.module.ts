@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatButtonToggleModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrRepositoryCoreModule} from '../../../../core/core.module';
 import {ScrRepositoryPageFeeEstimateModule} from '../fee/fee.module';
-import {ScrRepositoryPageFormRawComponent} from './form.component';
+import {ScrRepositoryPageFormMarkdownComponent} from './form.component';
 
 @NgModule({
   imports: [
@@ -16,6 +16,7 @@ import {ScrRepositoryPageFormRawComponent} from './form.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
+    MatButtonToggleModule,
     MatInputModule,
     MatButtonModule,
     ScrLoadingModule,
@@ -23,14 +24,14 @@ import {ScrRepositoryPageFormRawComponent} from './form.component';
     ScrRepositoryPageFeeEstimateModule
   ],
   declarations: [
-    ScrRepositoryPageFormRawComponent,
+    ScrRepositoryPageFormMarkdownComponent
   ],
   exports: [
-    ScrRepositoryPageFormRawComponent,
+    ScrRepositoryPageFormMarkdownComponent
   ],
   providers: []
 })
-export class ScrRepositoryPageFormRawModule {
+export class ScrRepositoryPageFormMarkdownModule {
 
   constructor() {
 

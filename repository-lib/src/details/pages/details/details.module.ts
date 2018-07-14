@@ -6,6 +6,8 @@ import {RouterModule} from '@angular/router';
 import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrRepositoryCoreModule} from '../../../core/core.module';
 import {ScrRepositoryPageDetailComponent} from './details.component';
+import {ScrRepositoryPageDetailMarkdownModule} from './markdown/markdown.module';
+import {ScrRepositoryPageDetailRawModule} from './raw/raw.module';
 
 @NgModule({
   imports: [
@@ -15,6 +17,8 @@ import {ScrRepositoryPageDetailComponent} from './details.component';
     MatButtonModule,
     ScrLoadingModule,
     ScrRepositoryCoreModule,
+    ScrRepositoryPageDetailRawModule,
+    ScrRepositoryPageDetailMarkdownModule
   ],
   declarations: [
     ScrRepositoryPageDetailComponent

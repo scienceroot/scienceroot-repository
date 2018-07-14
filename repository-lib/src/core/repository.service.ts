@@ -45,14 +45,4 @@ export class ScrRepositoryService {
       )
       .toPromise();
   }
-
-  public addPage(repositoryId: string, dataRequest: any): Promise<any> {
-    const url = ScrRepositoryStore.byRepositoryId(repositoryId);
-
-    return this._httpClient.post(url, dataRequest)
-      .pipe(
-        tap(res => console.log(res))
-      )
-      .toPromise();
-  }
 }

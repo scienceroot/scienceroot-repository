@@ -5,10 +5,15 @@ import {ScrRepositoryPage} from '../page.model';
   selector: 'scr-repository-page-form-proxy',
   template: `
     <ng-container [ngSwitch]="page.type">
+      <ng-container *ngSwitchCase="'markdown'">
+        <scr-repository-page-form-markdown  [page]="page"
+                                            (pageChange)="pageChange.emit($event)">
+        </scr-repository-page-form-markdown>
+      </ng-container>
       <ng-container *ngSwitchDefault="">
-        <scr-repository-page-form-raw-new [page]="page"
-                                          (pageChange)="pageChange.emit($event)">
-        </scr-repository-page-form-raw-new>
+        <scr-repository-page-form-raw [page]="page"
+                                      (pageChange)="pageChange.emit($event)">
+        </scr-repository-page-form-raw>
       </ng-container>
     </ng-container>
   `,
@@ -18,8 +23,7 @@ import {ScrRepositoryPage} from '../page.model';
 })
 export class ScrRepositoryPageFormProxyComponent implements OnInit {
 
-  @Input() page: ScrRepositoryPage = new ScrRepositoryPage();
-  @Input() pageType: 'raw' | 'markdown';
+  @Input() page: ScrRepositoryPage;
 
   @Output() pageChange: EventEmitter<ScrRepositoryPage> = new EventEmitter<ScrRepositoryPage>();
 

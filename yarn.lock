@@ -258,6 +258,10 @@
   dependencies:
     "@types/jasmine" "*"
 
+"@types/marked@0.3.0":
+  version "0.3.0"
+  resolved "https://npm.scienceroots.com/@types%2fmarked/-/marked-0.3.0.tgz#583c223dd33385a1dda01aaf77b0cd0411c4b524"
+
 "@types/node@*":
   version "10.5.2"
   resolved "https://npm.scienceroots.com/@types%2fnode/-/node-10.5.2.tgz#f19f05314d5421fe37e74153254201a7bf00a707"
@@ -266,6 +270,10 @@
   version "6.0.114"
   resolved "https://npm.scienceroots.com/@types%2fnode/-/node-6.0.114.tgz#c42cd56479f32bc1576a5cb19f8a208da9a2b052"
 
+"@types/prismjs@^1.6.5":
+  version "1.9.0"
+  resolved "https://npm.scienceroots.com/@types%2fprismjs/-/prismjs-1.9.0.tgz#38af9491e2f105079a443703ee675fb27371ec94"
+
 "@types/q@^0.0.32":
   version "0.0.32"
   resolved "https://npm.scienceroots.com/@types%2fq/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
@@ -273,6 +281,10 @@
 "@types/selenium-webdriver@^2.53.35", "@types/selenium-webdriver@~2.53.39":
   version "2.53.43"
   resolved "https://npm.scienceroots.com/@types%2fselenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
+
+"@types/showdown@^1.7.5":
+  version "1.7.5"
+  resolved "https://npm.scienceroots.com/@types%2fshowdown/-/showdown-1.7.5.tgz#91061f2f16d5bdf66b186185999ed675a8908b6a"
 
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
@@ -1244,6 +1256,14 @@ cli-boxes@^1.0.0:
   version "1.0.0"
   resolved "https://npm.scienceroots.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
 
+clipboard@^2.0.0:
+  version "2.0.1"
+  resolved "https://npm.scienceroots.com/clipboard/-/clipboard-2.0.1.tgz#a12481e1c13d8a50f5f036b0560fe5d16d74e46a"
+  dependencies:
+    good-listener "^1.2.2"
+    select "^1.1.2"
+    tiny-emitter "^2.0.0"
+
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://npm.scienceroots.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -1258,6 +1278,14 @@ cliui@^3.2.0:
   dependencies:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
+    wrap-ansi "^2.0.0"
+
+cliui@^4.0.0:
+  version "4.1.0"
+  resolved "https://npm.scienceroots.com/cliui/-/cliui-4.1.0.tgz#348422dbe82d800b3022eef4f6ac10bf2e4d1b49"
+  dependencies:
+    string-width "^2.1.1"
+    strip-ansi "^4.0.0"
     wrap-ansi "^2.0.0"
 
 clone-deep@^2.0.1:
@@ -1771,6 +1799,10 @@ del@^3.0.0:
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://npm.scienceroots.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
+
+delegate@^3.1.2:
+  version "3.2.0"
+  resolved "https://npm.scienceroots.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
 
 delegates@^1.0.0:
   version "1.0.0"
@@ -2820,6 +2852,12 @@ globule@^1.0.0:
     glob "~7.1.1"
     lodash "~4.17.10"
     minimatch "~3.0.2"
+
+good-listener@^1.2.2:
+  version "1.2.2"
+  resolved "https://npm.scienceroots.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+  dependencies:
+    delegate "^3.1.2"
 
 got@^6.7.1:
   version "6.7.1"
@@ -4137,6 +4175,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+marked@^0.3.9:
+  version "0.3.19"
+  resolved "https://npm.scienceroots.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
+
 math-random@^1.0.1:
   version "1.0.1"
   resolved "https://npm.scienceroots.com/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
@@ -4438,6 +4480,15 @@ ngx-clipboard@11.x.x:
   dependencies:
     ngx-window-token "^1.0.0"
     tslib "^1.9.0"
+
+ngx-markdown@1.5.2:
+  version "1.5.2"
+  resolved "https://npm.scienceroots.com/ngx-markdown/-/ngx-markdown-1.5.2.tgz#9e4fadfc5f9b36fa41d9a02007967626f4f4e9cd"
+  dependencies:
+    "@types/marked" "0.3.0"
+    "@types/prismjs" "^1.6.5"
+    marked "^0.3.9"
+    prismjs "^1.9.0"
 
 ngx-window-token@^1.0.0:
   version "1.0.0"
@@ -5145,6 +5196,12 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
+
+prismjs@^1.9.0:
+  version "1.15.0"
+  resolved "https://npm.scienceroots.com/prismjs/-/prismjs-1.15.0.tgz#8801d332e472091ba8def94976c8877ad60398d9"
+  optionalDependencies:
+    clipboard "^2.0.0"
 
 process-nextick-args@~1.0.6:
   version "1.0.7"
@@ -5856,6 +5913,10 @@ select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://npm.scienceroots.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
 
+select@^1.1.2:
+  version "1.1.2"
+  resolved "https://npm.scienceroots.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
+
 selenium-webdriver@3.0.1:
   version "3.0.1"
   resolved "https://npm.scienceroots.com/selenium-webdriver/-/selenium-webdriver-3.0.1.tgz#a2dea5da4a97f6672e89e7ca7276cefa365147a7"
@@ -6025,6 +6086,12 @@ shell-quote@^1.6.1:
     array-map "~0.0.0"
     array-reduce "~0.0.0"
     jsonify "~0.0.0"
+
+showdown@^1.8.6:
+  version "1.8.6"
+  resolved "https://npm.scienceroots.com/showdown/-/showdown-1.8.6.tgz#91ea4ee3b7a5448aaca6820a4e27e690c6ad771c"
+  dependencies:
+    yargs "^10.0.3"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -6574,6 +6641,10 @@ timers-browserify@^2.0.4:
 timespan@2.3.x:
   version "2.3.0"
   resolved "https://npm.scienceroots.com/timespan/-/timespan-2.3.0.tgz#4902ce040bd13d845c8f59b27e9d59bad6f39929"
+
+tiny-emitter@^2.0.0:
+  version "2.0.2"
+  resolved "https://npm.scienceroots.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
 
 tmp@0.0.24:
   version "0.0.24"
@@ -7342,6 +7413,12 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
+yargs-parser@^8.1.0:
+  version "8.1.0"
+  resolved "https://npm.scienceroots.com/yargs-parser/-/yargs-parser-8.1.0.tgz#f1376a33b6629a5d063782944da732631e966950"
+  dependencies:
+    camelcase "^4.1.0"
+
 yargs@6.6.0:
   version "6.6.0"
   resolved "https://npm.scienceroots.com/yargs/-/yargs-6.6.0.tgz#782ec21ef403345f830a808ca3d513af56065208"
@@ -7359,6 +7436,23 @@ yargs@6.6.0:
     which-module "^1.0.0"
     y18n "^3.2.1"
     yargs-parser "^4.2.0"
+
+yargs@^10.0.3:
+  version "10.1.2"
+  resolved "https://npm.scienceroots.com/yargs/-/yargs-10.1.2.tgz#454d074c2b16a51a43e2fb7807e4f9de69ccb5c5"
+  dependencies:
+    cliui "^4.0.0"
+    decamelize "^1.1.1"
+    find-up "^2.1.0"
+    get-caller-file "^1.0.1"
+    os-locale "^2.0.0"
+    require-directory "^2.1.1"
+    require-main-filename "^1.0.1"
+    set-blocking "^2.0.0"
+    string-width "^2.0.0"
+    which-module "^2.0.0"
+    y18n "^3.2.1"
+    yargs-parser "^8.1.0"
 
 yargs@^7.0.0:
   version "7.1.0"

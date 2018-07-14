@@ -16,9 +16,16 @@ import {ScrRepositoryPage} from '../page.model';
             <span class="mat-title">{{page.title}}</span>
           </div>
           <div class="text-container">
-            <p class="mat-body-2" 
-               [innerHtml]="page.displayText">
-            </p>
+            <ng-container [ngSwitch]="page.type">
+              <ng-container *ngSwitchCase="'markdown'">
+                <scr-repository-page-detail-markdown [page]="page">
+                </scr-repository-page-detail-markdown>
+              </ng-container>
+              <ng-container *ngSwitchDefault="">
+                <scr-repository-page-detail-raw [page]="page">
+                </scr-repository-page-detail-raw>
+              </ng-container>
+            </ng-container>
           </div>
           <div fxLayout="row" 
                fxLayoutGap="24px"

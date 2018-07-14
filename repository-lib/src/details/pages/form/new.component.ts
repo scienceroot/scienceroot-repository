@@ -51,7 +51,6 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
   public error: string = null;
 
   public saveTransactionId: string;
-  public pageType: 'raw' | 'markdown';
 
   public readonly repositoryId: string;
   private readonly _privateKey: string;

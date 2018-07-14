@@ -40,7 +40,6 @@ export class ScrRepositoryPage {
     return {
       key: this.key,
       version: 1,
-      type: this.type,
       data: this._data,
       privateKey: privateKey
     };
@@ -72,7 +71,8 @@ export class ScrRepositoryPage {
   private _createData(): any[] {
     const data = {
       title: this._title,
-      text: this._text
+      text: this._text,
+      type: this.type
     };
     const dataStr = JSON.stringify(data);
 

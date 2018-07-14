@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrRepositoryPageFormEditComponent} from './edit.component';
 import {ScrRepositoryPageFormProxyComponent} from './form-proxy.component';
+import {ScrRepositoryPageFormMarkdownModule} from './markdown/markdown.module';
 import {ScrRepositoryPagesNewComponent} from './new.component';
 import {ScrRepositoryPageFormRawModule} from './raw/raw.module';
 import {ScrTransactionListenerComponent} from './transaction-listener.component';
@@ -17,7 +18,8 @@ import {ScrTransactionListenerComponent} from './transaction-listener.component'
     RouterModule,
     MatButtonModule,
     ScrLoadingModule,
-    ScrRepositoryPageFormRawModule
+    ScrRepositoryPageFormRawModule,
+    ScrRepositoryPageFormMarkdownModule
   ],
   declarations: [
     ScrRepositoryPagesNewComponent,
