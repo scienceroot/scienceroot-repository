@@ -105,7 +105,7 @@ export class ScrRepositoryPageFormEditComponent implements OnInit {
     this.repositoryId = params.repositoryId;
     this._privateKey = ScrRepositoryPrivateKeyStore.get(this.repositoryId);
 
-    this.pageReq = this._dataService.getPageByRepository(this.repositoryId, key);
+    this.pageReq = this._dataService.getPageByRepositoryId(this.repositoryId, key);
     this.pageReq.then(page => {
       this.page = page;
       this.error = null;

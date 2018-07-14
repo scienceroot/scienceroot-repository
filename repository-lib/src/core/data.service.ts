@@ -7,6 +7,7 @@ import {fromPromise} from 'rxjs/observable/fromPromise';
 import {catchError, delay, flatMap, map, retry, tap} from 'rxjs/operators';
 import {DataEntry, ScrRepositoryPage} from '../details/pages/page.model';
 import {ScrRepositoryStore} from '../store/repositroy-store';
+import {ScrRepository} from './repository.model';
 import {ScrRepositoryService} from './repository.service';
 
 export const SCR_WAVES_URL = 'https://scienceblock.org';
@@ -49,7 +50,13 @@ export class ScrRepositoryDataService {
       .toPromise();
   }
 
-  public getPageByRepository(repositoryId: string, key: string): Promise<ScrRepositoryPage> {
+  public getPageByRepository(repository: ScrRepository, key: string): Promise<ScrRepositoryPage> {
+    const address = this._wavesApi.tools.getAddressFromPublicKey(repository.publicKey);
+
+    return this.getPage(address, key);
+  }
+
+  public getPageByRepositoryId(repositoryId: string, key: string): Promise<ScrRepositoryPage> {
     return this._repositoryService.get(repositoryId)
       .then(repository => {
         const address = this._wavesApi.tools.getAddressFromPublicKey(repository.publicKey);
