@@ -15,19 +15,16 @@ import {ScrRepositoryPage} from './page.model';
             <scr-repository-page-list [repository]="repository" 
                                       [pages]="pages">
             </scr-repository-page-list>
+            <div fxLayout="row"
+                 fxLayoutAlign="end">
+              <div fxFlex="100px">
+                <scr-repository-page-add [repository]="repository">
+                </scr-repository-page-add>
+              </div>
+            </div>
           </ng-container>
         </div>
       </scr-loading>
-    </div>
-    <div fxLayout="row" 
-         fxLayoutAlign="end">
-      <div fxFlex="100px">
-        <a  mat-raised-button=""
-            color="accent"
-            [routerLink]="['/repositories', repository.id, 'pages', 'new']">
-          <span>New page</span>
-        </a>
-      </div>
     </div>
   `,
   styles: [`

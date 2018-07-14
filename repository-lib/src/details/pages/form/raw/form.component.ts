@@ -1,16 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {ScrRepositoryPage} from '../page.model';
+import {ScrRepositoryPage} from '../../page.model';
 
 @Component({
-  selector: 'scr-repository-page-form',
+  selector: 'scr-repository-page-form-raw',
   template: `
     <div>
       <mat-form-field>
         <input matInput=""
                [formControl]="titleFormControl"
-               placeholder="Title" />
+               placeholder="Title"/>
       </mat-form-field>
     </div>
     <div class="text-container">
@@ -39,10 +39,10 @@ import {ScrRepositoryPage} from '../page.model';
     mat-form-field,
     mat-form-field input {
       width: 100%;
-    } 
+    }
   `]
 })
-export class ScrRepositoryPageFormComponent implements OnInit {
+export class ScrRepositoryPageFormRawComponent implements OnInit {
 
   @Input() page: ScrRepositoryPage = new ScrRepositoryPage();
 

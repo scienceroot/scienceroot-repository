@@ -1,41 +1,35 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatInputModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {ScrLoadingModule} from '@scienceroot/design';
-import {ScrRepositoryCoreModule} from '../../../core/core.module';
 import {ScrRepositoryPageFormEditComponent} from './edit.component';
-import {ScrRepositoryPageFeeEstimateModule} from './fee/fee.module';
-import {ScrRepositoryPageFormComponent} from './form.component';
+import {ScrRepositoryPageFormProxyComponent} from './form-proxy.component';
 import {ScrRepositoryPagesNewComponent} from './new.component';
+import {ScrRepositoryPageFormRawModule} from './raw/raw.module';
 import {ScrTransactionListenerComponent} from './transaction-listener.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
-    MatInputModule,
     MatButtonModule,
     ScrLoadingModule,
-    ScrRepositoryCoreModule,
-    ScrRepositoryPageFeeEstimateModule
+    ScrRepositoryPageFormRawModule
   ],
   declarations: [
     ScrRepositoryPagesNewComponent,
     ScrRepositoryPageFormEditComponent,
-    ScrRepositoryPageFormComponent,
-    ScrTransactionListenerComponent
+    ScrTransactionListenerComponent,
+    ScrRepositoryPageFormProxyComponent,
   ],
   exports: [
     ScrRepositoryPagesNewComponent,
     ScrRepositoryPageFormEditComponent,
-    ScrRepositoryPageFormComponent,
-    ScrTransactionListenerComponent
+    ScrTransactionListenerComponent,
+    ScrRepositoryPageFormProxyComponent,
   ],
   providers: []
 })

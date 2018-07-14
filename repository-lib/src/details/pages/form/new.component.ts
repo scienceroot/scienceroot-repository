@@ -19,9 +19,9 @@ import {ScrRepositoryPage} from '../page.model';
                                 (transactionSuccess)="onTransactionSuccess($event)">
       </ays-transaction-listener>
     <ng-container  *ngIf="!saveTransactionId">
-      <scr-repository-page-form [page]="page"
-                               (pageChange)="onPageChange($event)">
-      </scr-repository-page-form>
+      <scr-repository-page-form-proxy [page]="page"
+                                      (pageChange)="onPageChange($event)">
+      </scr-repository-page-form-proxy>
     </ng-container>
     <div fxLayout="row" 
          fxLayoutAlign="end">
@@ -47,10 +47,11 @@ import {ScrRepositoryPage} from '../page.model';
 })
 export class ScrRepositoryPagesNewComponent implements OnInit {
 
-  public page: ScrRepositoryPage = new ScrRepositoryPage();
+  public page: ScrRepositoryPage;
   public error: string = null;
 
   public saveTransactionId: string;
+  public pageType: 'raw' | 'markdown';
 
   public readonly repositoryId: string;
   private readonly _privateKey: string;
@@ -61,7 +62,10 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
     private _dataService: ScrRepositoryDataService,
     private _activatedRoute: ActivatedRoute
   ) {
+    const pageType = this._activatedRoute.snapshot.params.pageType;
+
     this.repositoryId = this._activatedRoute.snapshot.params.repositoryId;
+    this.page = new ScrRepositoryPage('', '', pageType);
     this._privateKey = ScrRepositoryPrivateKeyStore.get(this.repositoryId);
   }
 
@@ -88,7 +92,6 @@ export class ScrRepositoryPagesNewComponent implements OnInit {
 
   public onTransactionSuccess(tx: any) {
     const key = tx.data[0].key;
-    console.log(tx, key)
     this._router.navigate(['/repositories', this.repositoryId, 'pages', 'keys', key]);
   }
 

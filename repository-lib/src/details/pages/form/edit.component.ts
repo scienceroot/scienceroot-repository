@@ -19,9 +19,11 @@ import {ScrRepositoryPage} from '../page.model';
           <ays-transaction-listener [transactionId]="saveTransactionId" 
                                     (transactionSuccess)="onTransactionSuccess($event)">
           </ays-transaction-listener>
-          <scr-repository-page-form [page]="page"
-                                    (pageChange)="onPageChange($event)">
-          </scr-repository-page-form>
+          <ng-container *ngIf="!saveTransactionId">
+            <scr-repository-page-form-proxy [page]="page"
+                                            (pageChange)="onPageChange($event)">
+            </scr-repository-page-form-proxy>  
+          </ng-container>
           <div fxLayout="row"
                fxLayoutAlign="end">
             <div fxFlex="100px">

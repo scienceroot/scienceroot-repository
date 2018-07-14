@@ -15,8 +15,10 @@ import {ScrRepositoryPage} from '../page.model';
           <div>
             <span class="mat-title">{{page.title}}</span>
           </div>
-          <div>
-            <p class="mat-body-2" [innerHtml]="page.displayText"></p>
+          <div class="text-container">
+            <p class="mat-body-2" 
+               [innerHtml]="page.displayText">
+            </p>
           </div>
           <div fxLayout="row" 
                fxLayoutGap="24px"
@@ -41,7 +43,9 @@ import {ScrRepositoryPage} from '../page.model';
     </scr-loading>
   `,
   styles: [`
-
+    .text-container {
+      padding: 24px
+    }
   `]
 })
 export class ScrRepositoryPageDetailComponent implements OnInit {

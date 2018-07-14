@@ -7,6 +7,7 @@ import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrRepositoryPageDetailComponent} from './details/details.component';
 import {ScrRepositoryPageDetailModule} from './details/details.module';
 import {ScrRepositoryPagesFormModule} from './form/form.module';
+import {ScrRepositoryPageAddModule} from './add/add.module';
 import {ScrRepositoryPageListModule} from './list/list.module';
 import {ScrRepositoryPagesComponent} from './pages.component';
 
@@ -19,7 +20,8 @@ import {ScrRepositoryPagesComponent} from './pages.component';
     ScrLoadingModule,
     ScrRepositoryPagesFormModule,
     ScrRepositoryPageListModule,
-    ScrRepositoryPageDetailModule
+    ScrRepositoryPageDetailModule,
+    ScrRepositoryPageAddModule
   ],
   declarations: [
     ScrRepositoryPagesComponent

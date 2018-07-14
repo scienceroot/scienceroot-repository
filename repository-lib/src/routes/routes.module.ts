@@ -30,7 +30,12 @@ import {ScrRepositoryUserListComponent} from '../list/user-list.component';
               {
                 path: 'pages',
                 children: [
-                  {path: 'new', component: ScrRepositoryPagesNewComponent},
+                  {
+                    path: 'new',
+                    children: [
+                      {path: ':pageType', component: ScrRepositoryPagesNewComponent}
+                    ]
+                  },
                   {
                     path: 'keys',
                     children: [

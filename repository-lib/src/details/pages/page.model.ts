@@ -4,11 +4,11 @@ export interface DataEntry {
   value: string;
 }
 
+export type ScrRepositoryPageType = 'raw' | 'markdown';
+
 export class ScrRepositoryPage {
 
   public static dataKey: string = 'wiki';
-
-  public displayText: string;
 
   public static fromDataEntries(dataEntries: any[]): ScrRepositoryPage[] {
     return dataEntries.map(ScrRepositoryPage.fromDataEntry);
@@ -17,18 +17,19 @@ export class ScrRepositoryPage {
   public static fromDataEntry(dataEntry: DataEntry): ScrRepositoryPage {
     const base64Data = dataEntry.value.split('base64:')[1];
     const text = atob(base64Data);
-    console.log(text);
-    console.log(dataEntry);
     const json = JSON.parse(text);
 
-    return new ScrRepositoryPage(json.title, json.text, dataEntry.key);
+    return new ScrRepositoryPage(json.title, json.text, json.type, dataEntry.key);
   }
+
+  public displayText: string;
 
   private _data: any[] = [];
 
   constructor(
     private _title: string = '',
     private _text: string = '',
+    public type: ScrRepositoryPageType = 'raw',
     public readonly key: string = null
   ) {
     this._data = this._toByteArray(_text);
@@ -39,6 +40,7 @@ export class ScrRepositoryPage {
     return {
       key: this.key,
       version: 1,
+      type: this.type,
       data: this._data,
       privateKey: privateKey
     };
