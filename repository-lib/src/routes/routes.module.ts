@@ -21,19 +21,29 @@ import {ScrRepositoryUserListComponent} from '../list/user-list.component';
           {
             path: '',
             pathMatch: 'full',
+            canActivate: [ScrAuthenticationGuard],
             component: ScrRepositoryUserListComponent
           },
           {
             path: ':repositoryId',
             children: [
-              {path: '', pathMatch: 'full', component: ScrRepositoryDetailsComponent},
+              {
+                path: '',
+                pathMatch: 'full',
+                component: ScrRepositoryDetailsComponent,
+                canActivate: [ScrAuthenticationGuard],
+              },
               {
                 path: 'pages',
                 children: [
                   {
                     path: 'new',
                     children: [
-                      {path: ':pageType', component: ScrRepositoryPagesNewComponent}
+                      {
+                        path: ':pageType',
+                        component: ScrRepositoryPagesNewComponent,
+                        canActivate: [ScrAuthenticationGuard]
+                      }
                     ]
                   },
                   {
